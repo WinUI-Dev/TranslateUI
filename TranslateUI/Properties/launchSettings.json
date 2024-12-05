@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TranslateUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TranslateUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
