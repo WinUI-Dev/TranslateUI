@@ -30,20 +30,39 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
 
+    - name: Cache NuGet packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
     - name: Restore NuGet packages
-      run: msbuild TranslateUI.sln /t:Restore /p:Configuration=${{ matrix.configuration }}
+      run: |
+        echo "Restoring NuGet packages..."
+        msbuild TranslateUI.sln /t:Restore /p:Configuration=${{ matrix.configuration }}
+        echo "NuGet packages restored."
 
     - name: Build solution
-      run: msbuild TranslateUI.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:PublishTrimmed=false /p:PublishSingleFile=false
+      run: |
+        echo "Building solution..."
+        msbuild TranslateUI.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:PublishTrimmed=false /p:PublishSingleFile=false
+        echo "Solution built."
 
     - name: Create MSIX package
-      run: msbuild TranslateUI.sln /t:Publish /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:GenerateAppInstallerFile=false /p:PublishTrimmed=false /p:PublishSingleFile=false
+      run: |
+        echo "Creating MSIX package..."
+        msbuild TranslateUI.sln /t:Publish /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:GenerateAppInstallerFile=false /p:PublishTrimmed=false /p:PublishSingleFile=false
+        echo "MSIX package created."
 
     - name: Find MSIX package
       id: find_msix
       run: |
+        echo "Finding MSIX package..."
         echo "msix_path=$(find . -name '*.msix')" >> $GITHUB_ENV
         echo "appinstaller_path=$(find . -name '*.appinstaller')" >> $GITHUB_ENV
+        echo "MSIX package found."
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
