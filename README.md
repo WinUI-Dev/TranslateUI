@@ -1,8 +1,8 @@
 # `TranslateUI`
 > By _**`Luke Zhang`**_
 ## Status
- - [ ] UI  
-       `Creating UI...`
+ - [X] UI  
+       `UI Created!`  
  - [ ] Backend
 ## How it works
 See here:  
