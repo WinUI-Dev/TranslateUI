@@ -95,14 +95,14 @@
                           SelectionChanged="CB_InputLang_SelectionChanged"
                           Header="Input Language"
                           PlaceholderText="Pick a language"
-                          ToolTipService.ToolTip="Dont't need to select. Will auto-select."
-                          IsEnabled="False"
+                          ToolTipService.ToolTip="Dont't need to select. Will auto-select.&#x0A;This selection will not work."
+                          IsEditable="False"
                           Width="300"
                           Margin="10"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Bottom">
                           <x:String>English</x:String>
-                          <x:String>>Chinsese (Simplified)</x:String>
+                          <x:String>Chinsese (Simplified)</x:String>
                           <!--Will add others using API from Microsoft Languages page in the future-->
                 </ComboBox>
                 <TextBox x:Name="TB_Input"
@@ -125,7 +125,8 @@
                         Click="TranslateButton_Click"
                         Width="50" Height="50"
                         VerticalAlignment="Bottom"
-                        HorizontalAlignment="Center">
+                        HorizontalAlignment="Center"
+                        IsEnabled="False">
                     <SymbolIcon Symbol="Send" />
                 </Button>
             </StackPanel>
@@ -138,7 +139,7 @@
                           SelectionChanged="CB_OutputLang_SelectionChanged"
                           Header="Output Language"
                           PlaceholderText="Pick a language"
-                          ToolTipService.ToolTip="Pick a language"
+                          ToolTipService.ToolTip="Pick a language.&#x0A;Will add other languages later."
                           Width="300"
                           Margin="10"
                           HorizontalAlignment="Center"

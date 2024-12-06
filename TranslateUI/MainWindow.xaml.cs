@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Windows;
 using System.Text;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -50,20 +51,18 @@ namespace TranslateUI
 
         }
 
-        private void TranslateButton_Click(object sender, RoutedEventArgs e)
+        private async void TranslateButton_Click(object sender, RoutedEventArgs e)
         {
             string inputText = TB_Input.Text;
-            string selectedInputLang = CB_InputLang.SelectedItem.ToString();
             string selectedOutputLang = CB_OutputLang.SelectedItem.ToString();
-            string RealInputLang = "";
             string RealOutputLang = "";
-            if (selectedInputLang == "English")
+            if (selectedOutputLang == "English")
             {
-                RealInputLang = "en-US";
+                RealOutputLang = "en";
             }
-            else if (selectedInputLang == "Chinsese (Simplified)")
+            else if (selectedOutputLang == "Chinsese (Simplified)")
             {
-                RealOutputLang = "zh-Hans";
+                RealOutputLang = "zh";
             }
             else
             {
@@ -71,11 +70,38 @@ namespace TranslateUI
                 return;
             }
 
+            try
+            {
+                string ResponseBody = await SendPostRequest(RealOutputLang, inputText);
+                string translatedText = GetTranslatedText(ResponseBody);
+                TB_Output.Text = translatedText;
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine($"Error: {ex.Message}");
+                return;
+            }
+
         }
 
         private void CB_OutputLang_SelectionChanged(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (CB_OutputLang.SelectedItem.ToString() != null)
+                {
+                    TranslateButton.IsEnabled = true;
+                }
+                else
+                {
+                    TranslateButton.IsEnabled = false;
+                }
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error: {ex.Message}");
+            }
         }
 
         private void CB_InputLang_SelectionChanged(object sender, RoutedEventArgs e)
@@ -110,7 +136,7 @@ namespace TranslateUI
             return string.Empty;
         }
 
-        private async void SendPostRequest(string TranslateToLang, string Content)
+        private async Task<string> SendPostRequest(string TranslateToLang, string Content)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -146,13 +172,16 @@ namespace TranslateUI
                 client.DefaultRequestHeaders.Add("priority", "u=1");
 
                 // 请求Body
-                var content = new StringContent($"{{\"message\":\"{Content}\"}}", Encoding.UTF8, "application/json");
+                var content = new StringContent($"[\"{Content}\"]", Encoding.UTF8, "application/json");
                 // 发送 POST 请求
-                HttpResponseMessage response = await client.PostAsync("https://https://edge.microsoft.com/translate/translatetext?from=&to=", content);
+                HttpResponseMessage response = await client.PostAsync($"https://edge.microsoft.com/translate/translatetext?from=&to={TranslateToLang}", content);
 
                 // 处理响应
                 string responseBody = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(responseBody);
+                Debug.WriteLine("==== Response Body Starts ====");
+                Debug.WriteLine(responseBody);
+                Debug.WriteLine("==== Response Body Ends ====");
+                return responseBody;
             }
         }
     }
