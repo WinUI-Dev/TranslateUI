@@ -99,10 +99,9 @@
                           Margin="10"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Bottom">
-                          <x:String>Blue</x:String>
-                          <x:String>Green</x:String>
-                          <x:String>Red</x:String>
-                          <x:String>Yellow</x:String>
+                          <x:String>English</x:String>
+                          <x:String>>Chinsese (Simplified)</x:String>
+                          <!--Will add others using API from Microsoft Languages page in the future-->
                 </ComboBox>
                 <TextBox x:Name="TB_Input"
                          PlaceholderText="Input text..."
@@ -141,10 +140,9 @@
                           Margin="10"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center">
-                          <x:String>Blue</x:String>
-                          <x:String>Green</x:String>
-                          <x:String>Red</x:String>
-                          <x:String>Yellow</x:String>
+                          <x:String>Chinsese (Simplified)</x:String>
+                          <x:String>English</x:String>
+                    <!--Will add others using API from Microsoft Languages page in the future-->
                 </ComboBox>
                 <TextBox x:Name="TB_Output"
                          IsReadOnly="True"
