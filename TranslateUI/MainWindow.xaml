@@ -81,8 +81,15 @@
                        Margin="30,5,30,5">
             </TextBlock>
         </StackPanel>
-        <StackPanel x:Name="SP_Main" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-            <StackPanel Name="SP_InputText" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Vertical">
+        <StackPanel x:Name="SP_Main"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="10">
+            <StackPanel Name="SP_InputText"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Orientation="Vertical">
                 <SelectorBar x:Name="InputLangSelectBar"
                              HorizontalAlignment="Center"
                              VerticalAlignment="Center"
