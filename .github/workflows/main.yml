@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-11
     timeout-minutes: 60  # 设置超时时间为60分钟
 
     strategy:
