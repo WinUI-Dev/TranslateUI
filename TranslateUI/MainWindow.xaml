@@ -142,7 +142,7 @@
                           VerticalAlignment="Center">
                           <x:String>Chinsese (Simplified)</x:String>
                           <x:String>English</x:String>
-                    <!--Will add others using API from Microsoft Languages page in the future-->
+                          <!--Will add others using API from Microsoft Languages page in the future-->
                 </ComboBox>
                 <TextBox x:Name="TB_Output"
                          IsReadOnly="True"
