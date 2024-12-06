@@ -104,8 +104,11 @@ namespace TranslateUI
             {
                 // Handle exceptions as needed
                 Debug.WriteLine($"Error parsing JSON: {ex.Message}");
+                return string.Empty;
             }
 
+            // No translation found
+            Debug.WriteLine("Error: Translation empty.");
             return string.Empty;
         }
     }
