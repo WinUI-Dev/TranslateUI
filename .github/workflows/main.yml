@@ -16,35 +16,33 @@ jobs:
     strategy:
       matrix:
         configuration: [Release]
-        platform: [x64, x86]
+        platform: [x64]
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 9.0.x
+      uses: P:\actions\setup-dotnet
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: P:\actions\setup-msbuild
 
     - name: Restore NuGet packages
-      run: msbuild TranslateUI.sln /t:Restore /p:Configuration=${{ matrix.configuration }}
+      run: msbuild D:\source\TranslateUI\TranslateUI.sln /t:Restore /p:Configuration=${{ matrix.configuration }}
 
     - name: Build solution
-      run: msbuild TranslateUI.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:PublishTrimmed=false /p:PublishSingleFile=false
+      run: msbuild D:\source\TranslateUI\TranslateUI.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:PublishTrimmed=false /p:PublishSingleFile=false
 
     - name: Create MSIX package
-      run: msbuild TranslateUI.sln /t:Publish /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:GenerateAppInstallerFile=false /p:PublishTrimmed=false /p:PublishSingleFile=false
+      run: msbuild D:\source\TranslateUI\TranslateUI.sln /t:Publish /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:GenerateAppInstallerFile=false /p:PublishTrimmed=false /p:PublishSingleFile=false
 
     - name: Find MSIX package
       id: find_msix
       run: |
         echo "Finding MSIX package..."
-        echo "msix_path=$(find . -name '*.msix')" >> $GITHUB_ENV
-        echo "appinstaller_path=$(find . -name '*.appinstaller')" >> $GITHUB_ENV
+        echo "msix_path=$(find D:\source\TranslateUI -name '*.msix')" >> $GITHUB_ENV
+        echo "appinstaller_path=$(find D:\source\TranslateUI -name '*.appinstaller')" >> $GITHUB_ENV
         echo "MSIX package found."
 
     - name: Upload Build Artifacts
