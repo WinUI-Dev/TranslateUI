@@ -62,7 +62,7 @@
                        HorizontalAlignment="Center">
             </TextBlock>
             <TextBlock x:Name="PoweredByTextBlock_TranslateAPIProvider"
-                       Text="Bing Translate"
+                       Text="Edge Translate"
                        FontFamily="Cascadia Code"
                        FontSize="20"
                        FontWeight="SemiBold"
@@ -89,18 +89,26 @@
             <StackPanel Name="SP_InputText"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"
-                        Orientation="Vertical">
-                <SelectorBar x:Name="InputLangSelectBar"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             Width="300"
-                             Height="50">
-                </SelectorBar>
+                        Orientation="Vertical"
+                        Margin="0">
+                <ComboBox SelectionChanged="CB_InputLang_SelectionChanged"
+                          Header="Input Language"
+                          PlaceholderText="Pick a language"
+                          ToolTipService.ToolTip="Pick a language"
+                          Width="300"
+                          Margin="10"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Bottom">
+                          <x:String>Blue</x:String>
+                          <x:String>Green</x:String>
+                          <x:String>Red</x:String>
+                          <x:String>Yellow</x:String>
+                </ComboBox>
                 <TextBox x:Name="TB_Input"
                          PlaceholderText="Input text..."
                          FontFamily="Cascadia Code"
                          FontSize="15"
-                         Margin="10"
+                         Margin="10,0,10,10"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Center"
                          Width="300"
@@ -124,20 +132,27 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
                         Orientation="Vertical"
-                        Margin="10">
-                <SelectorBar x:Name="OutputLangSelectBar"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             Width="300"
-                             Height="50">
-                </SelectorBar>
+                        Margin="0">
+                <ComboBox SelectionChanged="CB_OutputLang_SelectionChanged"
+                          Header="Output Language"
+                          PlaceholderText="Pick a language"
+                          ToolTipService.ToolTip="Pick a language"
+                          Width="300"
+                          Margin="10"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                          <x:String>Blue</x:String>
+                          <x:String>Green</x:String>
+                          <x:String>Red</x:String>
+                          <x:String>Yellow</x:String>
+                </ComboBox>
                 <TextBox x:Name="TB_Output"
                          IsReadOnly="True"
                          PlaceholderText="Output text..."
                          Text=""
                          TextWrapping="Wrap"
                          FontFamily="Cascadia Code"
-                         FontSize="15" Margin="0,0,0,0"
+                         FontSize="15" Margin="0,0,0,10"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Center"
                          Width="300"
