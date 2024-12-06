@@ -39,7 +39,7 @@ jobs:
       run: msbuild TranslateUI.sln /t:Publish /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:GenerateAppInstallerFile=false /p:PublishTrimmed=false /p:PublishSingleFile=false
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: MSIX-Package
         path: |
