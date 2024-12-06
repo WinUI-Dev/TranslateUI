@@ -1,0 +1,17 @@
+name: Output 8000 A's
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run batch script
+      run: |
+        echo -n "" > output.txt
+        for i in {1..8000}; do echo -n "啊" >> output.txt; done
+        cat output.txt
