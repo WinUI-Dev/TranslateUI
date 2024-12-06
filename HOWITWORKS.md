@@ -110,3 +110,4 @@ OK，就这样，我觉得解释的够清楚了。
 > _Original Idea by_  
 > **_`Lingbo`_**  
 > [@lingbopro](github.com/lingbopro)  
+> [原文章](https://github.com/lingbopro/lingbos-sussy-mod/discussions/1#discussioncomment-11461648)
