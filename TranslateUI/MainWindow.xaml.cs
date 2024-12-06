@@ -51,7 +51,28 @@ namespace TranslateUI
 
         private void TranslateButton_Click(object sender, RoutedEventArgs e)
         {
-            TranslateButton.Content = "Clicked";
+            string inputText = TB_Input.Text;
+            string selectedInputLang = CB_InputLang.SelectedItem.ToString();
+            string selectedOutputLang = CB_OutputLang.SelectedItem.ToString();
+            string RealInputLang = "";
+            string RealOutputLang = "";
+            string RealOnlyInputLang = "";
+            string RealOnlyOutputLang = "";
+            if (selectedInputLang == "English")
+            {
+                RealInputLang = "en-US";
+                RealOnlyInputLang = "en";
+            }
+            else if (selectedInputLang == "Chinsese (Simplified)")
+            {
+                RealOutputLang = "zh-Hans";
+                RealOnlyOutputLang = "zh";
+            }
+            else
+            {
+                Debug.WriteLine("Error");
+                return;
+            }
         }
 
         private void CB_OutputLang_SelectionChanged(object sender, RoutedEventArgs e)

@@ -91,7 +91,8 @@
                         HorizontalAlignment="Left"
                         Orientation="Vertical"
                         Margin="0">
-                <ComboBox SelectionChanged="CB_InputLang_SelectionChanged"
+                <ComboBox x:Name="CB_InputLang"
+                          SelectionChanged="CB_InputLang_SelectionChanged"
                           Header="Input Language"
                           PlaceholderText="Pick a language"
                           ToolTipService.ToolTip="Pick a language"
@@ -132,7 +133,8 @@
                         HorizontalAlignment="Right"
                         Orientation="Vertical"
                         Margin="0">
-                <ComboBox SelectionChanged="CB_OutputLang_SelectionChanged"
+                <ComboBox x:Name="CB_OutputLang"
+                          SelectionChanged="CB_OutputLang_SelectionChanged"
                           Header="Output Language"
                           PlaceholderText="Pick a language"
                           ToolTipService.ToolTip="Pick a language"
