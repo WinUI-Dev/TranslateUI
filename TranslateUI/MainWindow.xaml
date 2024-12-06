@@ -162,5 +162,29 @@
                 </TextBox>
             </StackPanel>
         </StackPanel>
+        <StackPanel x:Name="SP_UseTerms"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Margin="10">
+            <TextBlock Text="Using this app means you agree to" HorizontalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center">
+                <Hyperlink NavigateUri="https://aka.ms/useterms">
+                       Microsoft's Terms of Use
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Center">
+                <Hyperlink NavigateUri="https://aka.ms/privacy">Microsoft's Privacy Statement</Hyperlink>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Center">
+                <Hyperlink NavigateUri="https://github.com/zsr-lukezhang/TranslateUI/blob/main/LICENSE">The open-source license for this app</Hyperlink>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Center">
+                      <Hyperlink NavigateUri="https://github.com/zsr-lukezhang/TranslateUI/blob/main/TermsAndPrivacy.md">
+                                 The use terms and prvacy policy for this app
+                      </Hyperlink>
+            </TextBlock>
+            <TextBlock Text="and that you are using this app at your own risk."/>
+        </StackPanel>
     </Grid>
 </Window>
