@@ -3,7 +3,7 @@
 ## Status
  - [X] UI  
        `UI Created!`  
- - [X] Backend
+ - [X] Backend  
        `Backend Created`
 ## How it works
 See here:  
