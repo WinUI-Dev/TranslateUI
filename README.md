@@ -14,7 +14,7 @@ I already submitted this app to the Microsoft Store.
  - [X] Submission
  - [X] Pre-processing
  - [ ] Certification
- - [ ] Publishing
+ - [ ] Publishing  
 You can't download it right now in the Store, but you can in Releases.
 > Waring  
 > There's a know issue that the logo _**WILL NOT**_ be seen unless downloaded an installed from the Microsoft Store.
