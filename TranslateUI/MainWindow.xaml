@@ -91,9 +91,10 @@
                         HorizontalAlignment="Left"
                         Orientation="Vertical"
                         Margin="0">
+                <!--This combobox is useless-->
                 <ComboBox x:Name="CB_InputLang"
-                          SelectionChanged="CB_InputLang_SelectionChanged"
-                          Header="Input Language"
+                          Header="Input Language (Deleted)"
+                          IsEnabled="False"
                           PlaceholderText="Pick a language"
                           ToolTipService.ToolTip="Dont't need to select. Will auto-select.&#x0A;This selection will not work."
                           IsEditable="False"
@@ -144,7 +145,7 @@
                           Margin="10"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center">
-                          <x:String>Chinsese (Simplified)</x:String>
+                          <x:String>Chinese (Simplified)</x:String>
                           <x:String>English</x:String>
                           <!--Will add others using API from Microsoft Languages page in the future-->
                 </ComboBox>

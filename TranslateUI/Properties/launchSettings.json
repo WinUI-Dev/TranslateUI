@@ -1,7 +1,8 @@
 {
   "profiles": {
     "TranslateUI (Package)": {
-      "commandName": "MsixPackage"
+      "commandName": "MsixPackage",
+      "alwaysReinstallApp": true
     },
     "TranslateUI (Unpackaged)": {
       "commandName": "Project"

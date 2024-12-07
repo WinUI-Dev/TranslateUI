@@ -1,188 +1,126 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Net.Http;
+using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using System.Diagnostics;
-using System.Net.Http;
-using System.Windows;
-using System.Text;
-using System.Threading.Tasks;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using System.Runtime.InteropServices;
 
 namespace TranslateUI
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    /// 
-    public class Translation
-    {
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-    }
-
-    public class Root
-    {
-        [JsonPropertyName("translations")]
-        public Translation[] Translations { get; set; }
-    }
     public sealed partial class MainWindow : Window
     {
+        private static readonly HttpClient client = new HttpClient();
+
         public MainWindow()
         {
             this.InitializeComponent();
-
-            // Enable custom title bar
             this.ExtendsContentIntoTitleBar = true;
-
         }
 
         private async void TranslateButton_Click(object sender, RoutedEventArgs e)
         {
             string inputText = TB_Input.Text;
-            string selectedOutputLang = CB_OutputLang.SelectedItem.ToString();
-            string RealOutputLang = "";
-            if (selectedOutputLang == "English")
+            string selectedOutputLang = CB_OutputLang.SelectedItem?.ToString();
+            string realOutputLang = GetLanguageCode(selectedOutputLang);
+
+            if (!string.IsNullOrEmpty(realOutputLang))
             {
-                RealOutputLang = "en";
-            }
-            else if (selectedOutputLang == "Chinsese (Simplified)")
-            {
-                RealOutputLang = "zh";
+                try
+                {
+                    string responseBody = await SendPostRequest(realOutputLang, inputText).ConfigureAwait(false);
+                    string translatedText = GetTranslatedText(responseBody);
+
+                    // 使用 DispatcherQueue 在 UI 线程上更新 TextBox
+                    _ = DispatcherQueue.TryEnqueue(() =>
+                    {
+                        TB_Output.Text = translatedText;
+                    });
+                }
+                catch (COMException comEx)
+                {
+                    Debug.WriteLine($"COMException: {comEx.Message}");
+                    Debug.WriteLine($"COMException StackTrace: {comEx.StackTrace}");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Exception: {ex.Message}");
+                    Debug.WriteLine($"Exception StackTrace: {ex.StackTrace}");
+                }
             }
             else
             {
-                Debug.WriteLine("Error");
-                return;
+                Debug.WriteLine("Error: Invalid language selection.");
             }
-
-            try
-            {
-                string ResponseBody = await SendPostRequest(RealOutputLang, inputText);
-                string translatedText = GetTranslatedText(ResponseBody);
-                TB_Output.Text = translatedText;
-            }
-            catch(Exception ex)
-            {
-                Debug.WriteLine($"Error: {ex.Message}");
-                return;
-            }
-
         }
 
         private void CB_OutputLang_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (CB_OutputLang.SelectedItem.ToString() != null)
-                {
-                    TranslateButton.IsEnabled = true;
-                }
-                else
-                {
-                    TranslateButton.IsEnabled = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Error: {ex.Message}");
-            }
+            TranslateButton.IsEnabled = CB_OutputLang.SelectedItem != null;
         }
 
-        private void CB_InputLang_SelectionChanged(object sender, RoutedEventArgs e)
+        private string GetLanguageCode(string language)
         {
-
+            switch (language)
+            {
+                case "English":
+                    return "en";
+                case "Chinese (Simplified)":
+                    return "zh";
+                default:
+                    return null;
+            }
         }
 
         public string GetTranslatedText(string json)
         {
             try
             {
-                var options = new System.Text.Json.JsonSerializerOptions
+                using (JsonDocument doc = JsonDocument.Parse(json))
                 {
-                    PropertyNameCaseInsensitive = true
-                };
-
-                var root = System.Text.Json.JsonSerializer.Deserialize<Root[]>(json, options);
-                if (root != null && root.Length > 0 && root[0].Translations.Length > 0)
-                {
-                    return root[0].Translations[0].Text;
+                    JsonElement root = doc.RootElement;
+                    if (root.ValueKind == JsonValueKind.Array && root.GetArrayLength() > 0)
+                    {
+                        JsonElement firstElement = root[0];
+                        if (firstElement.TryGetProperty("translations", out JsonElement translations) && translations.ValueKind == JsonValueKind.Array && translations.GetArrayLength() > 0)
+                        {
+                            JsonElement firstTranslation = translations[0];
+                            if (firstTranslation.TryGetProperty("text", out JsonElement text))
+                            {
+                                return text.GetString();
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // Handle exceptions as needed
                 Debug.WriteLine($"Error parsing JSON: {ex.Message}");
                 return string.Empty;
             }
 
-            // No translation found
             Debug.WriteLine("Error: Translation empty.");
             return string.Empty;
         }
 
-        private async Task<string> SendPostRequest(string TranslateToLang, string Content)
+        private async Task<string> SendPostRequest(string translateToLang, string content)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                // 设置请求头
-                // 根据 @lingbopro 的研究，没什么用
-                // 但是还是设置一下
-                client.DefaultRequestHeaders.Add("sec-ch-ua-platform", "\"Windows\"");
-                client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0");
-                client.DefaultRequestHeaders.Add("sec-ch-ua", "\"Microsoft Edge\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"");
-                client.DefaultRequestHeaders.Add("sec-ch-ua-mobile", "?0");
-                client.DefaultRequestHeaders.Add("accept", "*/*");
-                client.DefaultRequestHeaders.Add("sec-mesh-client-edge-version", "131.0.2903.70");
-                client.DefaultRequestHeaders.Add("sec-mesh-client-edge-channel", "stable");
-                client.DefaultRequestHeaders.Add("sec-mesh-client-os", "Windows");
-                client.DefaultRequestHeaders.Add("sec-mesh-client-os-version", "10.0.26100");
-                client.DefaultRequestHeaders.Add("sec-mesh-client-arch", "x86_64");
-                client.DefaultRequestHeaders.Add("sec-mesh-client-webview", "0");
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Add("sec-ch-ua-platform", "\"Windows\"");
+            client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0");
+            client.DefaultRequestHeaders.Add("sec-ch-ua", "\"Microsoft Edge\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"");
+            client.DefaultRequestHeaders.Add("sec-ch-ua-mobile", "?0");
+            client.DefaultRequestHeaders.Add("accept", "*/*");
+            client.DefaultRequestHeaders.Add("origin", "https://github.com");
+            client.DefaultRequestHeaders.Add("referer", "https://github.com/zsr-lukezhang/TranslateUI/");
+            client.DefaultRequestHeaders.Add("accept-encoding", "gzip, deflate, br, zstd");
+            client.DefaultRequestHeaders.Add("priority", "u=1");
 
-                // 瞎写的网站
-                client.DefaultRequestHeaders.Add("origin", "https://github.com");
-                client.DefaultRequestHeaders.Add("x-edge-shopping-flag", "1");
-                client.DefaultRequestHeaders.Add("sec-fetch-site", "cross-site");
-                client.DefaultRequestHeaders.Add("sec-fetch-mode", "cors");
-                client.DefaultRequestHeaders.Add("sec-fetch-dest", "empty");
-
-                // 瞎写的地址
-                client.DefaultRequestHeaders.Add("referer", "https://github.com/zsr-lukezhang/TranslateUI/");
-                client.DefaultRequestHeaders.Add("accept-encoding", "gzip, deflate, br, zstd");
-
-                // 这一行就不要了
-                // 省得影响输出内容
-                // client.DefaultRequestHeaders.Add("accept-language", "en,zh-CN;q=0.9,zh;q=0.8,en-GB;q=0.7,en-US;q=0.6");
-                client.DefaultRequestHeaders.Add("priority", "u=1");
-
-                // 请求Body
-                var content = new StringContent($"[\"{Content}\"]", Encoding.UTF8, "application/json");
-                // 发送 POST 请求
-                HttpResponseMessage response = await client.PostAsync($"https://edge.microsoft.com/translate/translatetext?from=&to={TranslateToLang}", content);
-
-                // 处理响应
-                string responseBody = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine("==== Response Body Starts ====");
-                Debug.WriteLine(responseBody);
-                Debug.WriteLine("==== Response Body Ends ====");
-                return responseBody;
-            }
+            var requestContent = new StringContent($"[\"{content}\"]", Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync($"https://edge.microsoft.com/translate/translatetext?from=&to={translateToLang}", requestContent).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
     }
 }
