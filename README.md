@@ -13,14 +13,15 @@ I already submitted this app to the Microsoft Store.
 ### Store Status
  - [X] Submission
  - [X] Pre-processing
- - [ ] Certification
+ - [ ] Certification  
+       `In Certification`
  - [ ] Publishing  
 
 You can't download it right now in the Store, but you can in Releases.
 > Waring  
 > There's a know issue that the logo _**WILL NOT**_ be seen unless downloaded an installed from the Microsoft Store.
 ### Releases
-See [v1.0 in Releases page](https://github.com/zsr-lukezhang/TranslateUI/releases/tag/v1.0)  
+See [v1.1 in Releases page](https://github.com/zsr-lukezhang/TranslateUI/releases/tag/v1.1)  
 1. Extract the zip file to a folder.
 2. Run setup.ps1 in Windows PowerShell (`powershell.exe`, not `pwsh.exe`)
 3. Follow the instructions in the script.
