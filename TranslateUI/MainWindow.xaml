@@ -117,7 +117,9 @@
                          VerticalAlignment="Center"
                          HorizontalAlignment="Center"
                          Width="300"
-                         Height="50">
+                         Height="50"
+                         IsSpellCheckEnabled="False"
+                         AcceptsReturn="True">
                 </TextBox>
             </StackPanel>
             <StackPanel Name="SP_TranslateButton"
@@ -164,7 +166,8 @@
                          Width="300"
                          Height="50"
                          ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                         ScrollViewer.HorizontalScrollBarVisibility="Auto" >
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                         AcceptsReturn="True">
                 </TextBox>
             </StackPanel>
         </StackPanel>
