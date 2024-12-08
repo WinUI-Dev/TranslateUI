@@ -9,8 +9,8 @@
 
   <Identity
     Name="LukeZhang.TranslateUI"
-    Publisher="CN=92DF4ED1-5D11-4997-BDEA-7C52EAB09625"
-    Version="1.0.0.0" />
+    Publisher="CN=Luke Zhang"
+    Version="1.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="72dd9edb-7e3d-47dd-aa4e-d3b45878436b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
