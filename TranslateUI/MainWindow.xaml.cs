@@ -23,6 +23,7 @@ namespace TranslateUI
         private async void TranslateButton_Click(object sender, RoutedEventArgs e)
         {
             PB_Wait.Visibility = Visibility.Visible;
+            TranslateButton.IsEnabled = false;
 
             string inputText = TB_Input.Text;
             string selectedOutputLang = CB_OutputLang.SelectedItem?.ToString();
@@ -40,6 +41,7 @@ namespace TranslateUI
                     {
                         TB_Output.Text = translatedText;
                         PB_Wait.Visibility = Visibility.Collapsed;
+                        TranslateButton.IsEnabled = true;
                     });
                 }
                 catch (COMException comEx)
@@ -50,6 +52,7 @@ namespace TranslateUI
                     _ = DispatcherQueue.TryEnqueue(() =>
                     {
                         PB_Wait.ShowError = true;
+                        TranslateButton.IsEnabled = true;
                     });
                 }
                 catch (Exception ex)
@@ -60,6 +63,7 @@ namespace TranslateUI
                     _ = DispatcherQueue.TryEnqueue(() =>
                     {
                         PB_Wait.ShowError = true;
+                        TranslateButton.IsEnabled = true;
                     });
                 }
             }
@@ -70,6 +74,7 @@ namespace TranslateUI
                 _ = DispatcherQueue.TryEnqueue(() =>
                 {
                     PB_Wait.ShowError = true;
+                    TranslateButton.IsEnabled = true;
                 });
             }
         }
