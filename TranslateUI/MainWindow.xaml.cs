@@ -22,6 +22,8 @@ namespace TranslateUI
 
         private async void TranslateButton_Click(object sender, RoutedEventArgs e)
         {
+            PB_Wait.Visibility = Visibility.Visible;
+
             string inputText = TB_Input.Text;
             string selectedOutputLang = CB_OutputLang.SelectedItem?.ToString();
             string realOutputLang = GetLanguageCode(selectedOutputLang);
@@ -33,26 +35,42 @@ namespace TranslateUI
                     string responseBody = await SendPostRequest(realOutputLang, inputText).ConfigureAwait(false);
                     string translatedText = GetTranslatedText(responseBody);
 
-                    // 使用 DispatcherQueue 在 UI 线程上更新 TextBox
+                    // 使用 DispatcherQueue 在 UI 线程上更新控件
                     _ = DispatcherQueue.TryEnqueue(() =>
                     {
                         TB_Output.Text = translatedText;
+                        PB_Wait.Visibility = Visibility.Collapsed;
                     });
                 }
                 catch (COMException comEx)
                 {
                     Debug.WriteLine($"COMException: {comEx.Message}");
                     Debug.WriteLine($"COMException StackTrace: {comEx.StackTrace}");
+                    // 使用 DispatcherQueue 在 UI 线程上更新控件
+                    _ = DispatcherQueue.TryEnqueue(() =>
+                    {
+                        PB_Wait.ShowError = true;
+                    });
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Exception: {ex.Message}");
                     Debug.WriteLine($"Exception StackTrace: {ex.StackTrace}");
+                    // 使用 DispatcherQueue 在 UI 线程上更新控件
+                    _ = DispatcherQueue.TryEnqueue(() =>
+                    {
+                        PB_Wait.ShowError = true;
+                    });
                 }
             }
             else
             {
                 Debug.WriteLine("Error: Invalid language selection.");
+                // 使用 DispatcherQueue 在 UI 线程上更新控件
+                _ = DispatcherQueue.TryEnqueue(() =>
+                {
+                    PB_Wait.ShowError = true;
+                });
             }
         }
 

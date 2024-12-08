@@ -13,6 +13,9 @@
     </Window.SystemBackdrop>
 
     <Grid>
+        <StackPanel x:Name="SP_ProgressBar" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <ProgressBar x:Name="PB_Wait" Width="1618" IsIndeterminate="True" ShowPaused="False" ShowError="False" Visibility="Collapsed" />
+        </StackPanel>
         <StackPanel x:Name="SP_Logo"
                     Orientation="Vertical"
                     HorizontalAlignment="Left"
