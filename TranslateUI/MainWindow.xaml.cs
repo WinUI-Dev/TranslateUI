@@ -40,6 +40,8 @@ namespace TranslateUI
             PB_Wait.ShowError = false;
             PB_Wait.Visibility = Visibility.Visible;
             TranslateButton.IsEnabled = false;
+            TB_Input.IsEnabled = false;
+            TB_Output.Text = string.Empty;
 
             string inputText = TB_Input.Text;
             string selectedOutputLang = CB_OutputLang.SelectedItem?.ToString();
@@ -47,13 +49,15 @@ namespace TranslateUI
 
             if (inputText == "_Dev_Mode_")
             {
+                await Task.Delay(1000);
                 ShowError("Hello, world!", "Emm...\nIt seems like you are a software developer...\nPlease join us to fix and add more features to this app!");
                 // 使用 DispatcherQueue 在 UI 线程上更新控件
                 _ = DispatcherQueue.TryEnqueue(() =>
                 {
                     TB_Output.Text = "Hello, world!";
-                    PB_Wait.Visibility = Visibility.Collapsed;
                     TranslateButton.IsEnabled = true;
+                    TB_Input.IsEnabled = true;
+                    PB_Wait.ShowError = true;
                 });
 
                 return;
@@ -73,33 +77,34 @@ namespace TranslateUI
                         PB_Wait.Visibility = Visibility.Collapsed;
                         TranslateButton.IsEnabled = true;
                         PB_Wait.ShowError = true;
+                        TB_Input.IsEnabled = true;
                     });
                 }
                 catch (COMException comEx)
                 {
+                    // 使用 DispatcherQueue 在 UI 线程上更新控件
+                    _ = DispatcherQueue.TryEnqueue(() =>
+                    {
+                        PB_Wait.ShowError = true;
+                        TranslateButton.IsEnabled = true;
+                        TB_Input.IsEnabled = true;
+                    });
                     Debug.WriteLine($"COMException: {comEx.Message}");
                     Debug.WriteLine($"COMException StackTrace: {comEx.StackTrace}");
                     ShowError("COM Exception", $"Exception:\n{comEx.Message}\nException StackTrace:\n{comEx.StackTrace}");
-
-                    // 使用 DispatcherQueue 在 UI 线程上更新控件
-                    _ = DispatcherQueue.TryEnqueue(() =>
-                    {
-                        PB_Wait.ShowError = true;
-                        TranslateButton.IsEnabled = true;
-                    });
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"Exception: {ex.Message}");
-                    Debug.WriteLine($"Exception StackTrace: {ex.StackTrace}");
-                    ShowError("Exception", $"Exception:\n{ex.Message}\nException StackTrace:\n{ex.StackTrace}");
-
                     // 使用 DispatcherQueue 在 UI 线程上更新控件
                     _ = DispatcherQueue.TryEnqueue(() =>
                     {
                         PB_Wait.ShowError = true;
                         TranslateButton.IsEnabled = true;
+                        TB_Input.IsEnabled = true;
                     });
+                    Debug.WriteLine($"Exception: {ex.Message}");
+                    Debug.WriteLine($"Exception StackTrace: {ex.StackTrace}");
+                    ShowError("Exception", $"Exception:\n{ex.Message}\nException StackTrace:\n{ex.StackTrace}");
                 }
             }
             else
