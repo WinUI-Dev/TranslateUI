@@ -48,6 +48,16 @@
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Center">
             </TextBlock>
+            <TextBlock x:Name="LogoTextBlock_Version"
+                       Text="Beta Version 1.1.1"
+                       FontFamily="Cascadia Code"
+                       FontStyle="Italic"
+                       FontWeight="SemiBold"
+                       FontSize="17"
+                       Margin="30,5,30,5"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Center">
+            </TextBlock>
         </StackPanel>
         <StackPanel x:Name="SP_PoweredBy"
                     Orientation="Vertical"

@@ -6,7 +6,7 @@
 //                                                 TranslateUI
 //                                      by Luke Zhang (GitHub@zsr-lukezhang)
 //                                   original idea by Lingbo (GitHub@lingbopro)
-//                                           Application Version: 1.1
+//                                      Application Version: 1.1.1 ( Beta )
 //
 //
 //
@@ -202,6 +202,8 @@ namespace TranslateUI
                         Title = title,
                         Content = $":(\nYou reached an error.\nYou can try to solve this problem yourself,\nor post a new issue with these logs on GitHub in the issues page.\n===================================\n{content}",
                         XamlRoot = this.Content.XamlRoot, // 设置 XamlRoot
+                        // 这个长宽我不知道怎么调 需要帮助
+                        // Need help with the width and height of the Content Dialog
                         Width = 400, // 设置宽度
                         Height = 300, // 设置高度
                         PrimaryButtonText = "Not your problem",
