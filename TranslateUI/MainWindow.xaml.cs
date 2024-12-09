@@ -200,18 +200,20 @@ namespace TranslateUI
                     var dialog = new ContentDialog
                     {
                         Title = title,
-                        Content = $":(\nYou reached an error.\nYou can try to solve this problem yourself,\nor post a new issue on GitHub.\n===================================\n{content}",
+                        Content = $":(\nYou reached an error.\nYou can try to solve this problem yourself,\nor post a new issue with these logs on GitHub in the issues page.\n===================================\n{content}",
                         XamlRoot = this.Content.XamlRoot, // 设置 XamlRoot
                         Width = 400, // 设置宽度
                         Height = 300, // 设置高度
-                        PrimaryButtonText = "OK",
-                        SecondaryButtonText = "Copy to Clipboard",
+                        PrimaryButtonText = "Not your problem",
+                        SecondaryButtonText = "Copy to clipboard",
+                        CloseButtonText = "Copy & open issues",
                         DefaultButton = ContentDialogButton.Primary,
                         PrimaryButtonStyle = new Style(typeof(Button))
                         {
                             Setters =
                         {
                             new Setter(Button.BackgroundProperty, new SolidColorBrush(Microsoft.UI.Colors.Blue)),
+                            new Setter(Button.ForegroundProperty, new SolidColorBrush(Microsoft.UI.Colors.White)),
                             new Setter(Button.ForegroundProperty, new SolidColorBrush(Microsoft.UI.Colors.White))
                         }
                         }
@@ -224,6 +226,14 @@ namespace TranslateUI
                         Clipboard.SetContent(dataPackage);
                     };
 
+                    dialog.CloseButtonClick += (sender, args) =>
+                    {
+                        var dataPackage = new DataPackage();
+                        dataPackage.SetText($"Error title:\n{title}\nError Message:\n{content}");
+                        Clipboard.SetContent(dataPackage);
+                        OpenBrowser("https://github.com/zsr-lukezhang/TranslateUI/issues");
+                    };
+
                     await dialog.ShowAsync();
                 });
             }
@@ -232,7 +242,23 @@ namespace TranslateUI
                 // 处理 DispatcherQueue 为 null 的情况
                 // 我不知道怎么处理（
                 // Luke Zhang
-                // 2024/12/08
+                // 2024/12/09
+            }
+        }
+
+        private void OpenBrowser(string URL)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = URL,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            { 
+                Debug.WriteLine("Error starting browser:" + ex.Message);
             }
         }
     }

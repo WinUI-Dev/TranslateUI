@@ -190,7 +190,7 @@
             </TextBlock>
             <TextBlock HorizontalAlignment="Center">
                       <Hyperlink NavigateUri="https://github.com/zsr-lukezhang/TranslateUI/blob/main/TermsAndPrivacy.md">
-                                 The use terms and prvacy policy for this app
+                                 The use terms and privacy policy for this app
                       </Hyperlink>
             </TextBlock>
             <TextBlock Text="and that you are using this app at your own risk."/>
