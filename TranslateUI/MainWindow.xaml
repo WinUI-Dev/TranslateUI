@@ -17,10 +17,12 @@
             <ProgressBar x:Name="PB_Wait" Width="1618" IsIndeterminate="True" ShowPaused="False" ShowError="False" Visibility="Collapsed" />
         </StackPanel>
         <StackPanel x:Name="SP_Logo"
-                    Orientation="Vertical"
+                    Orientation="Horizontal"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top">
-            <TextBlock VerticalAlignment="Top"
+            <Image Source="Assets/TranslateUI.png" Height="60" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,30,5,30"></Image>
+            <StackPanel x:Name="SP_Logo_Text" Orientation="Vertical" HorizontalAlignment="Right">
+                <TextBlock VerticalAlignment="Top"
                        HorizontalAlignment="Center"
                        x:Name="LogoTextBlock"
                        Text="TranslateUI"
@@ -29,17 +31,9 @@
                        Margin="30,30,30,5"
                        FontWeight="Bold"
                        CharacterSpacing="70">
-            </TextBlock>
-            <TextBlock x:Name="AppByTextBlock"
-                       Text="Application by"
-                       FontFamily="Cascadia Code"
-                       FontSize="15"
-                       Margin="30,5,30,5"
-                       VerticalAlignment="Bottom"
-                       HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock x:Name="LogoTextBlock_MainDeveloper"
-                       Text="Luke Zhang"
+                </TextBlock>
+                <TextBlock x:Name="LogoTextBlock_Version"
+                       Text="Canary Version 1.1.2"
                        FontFamily="Cascadia Code"
                        FontStyle="Italic"
                        FontWeight="SemiBold"
@@ -47,17 +41,8 @@
                        Margin="30,5,30,5"
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock x:Name="LogoTextBlock_Version"
-                       Text="Beta Version 1.1.1"
-                       FontFamily="Cascadia Code"
-                       FontStyle="Italic"
-                       FontWeight="SemiBold"
-                       FontSize="17"
-                       Margin="30,5,30,5"
-                       VerticalAlignment="Bottom"
-                       HorizontalAlignment="Center">
-            </TextBlock>
+                </TextBlock>
+            </StackPanel>
         </StackPanel>
         <StackPanel x:Name="SP_PoweredBy"
                     Orientation="Vertical"
@@ -117,7 +102,10 @@
                           VerticalAlignment="Bottom">
                           <x:String>English</x:String>
                           <x:String>Chinsese (Simplified)</x:String>
-                          <!--Will add others using API from Microsoft Languages page in the future-->
+                          <!--
+                              Will add others using API from Microsoft Languages page in the future
+                              But not this combobox :)
+                          -->
                 </ComboBox>
                 <TextBox x:Name="TB_Input"
                          PlaceholderText="Input text..."
@@ -183,7 +171,7 @@
         </StackPanel>
         <StackPanel x:Name="SP_UseTerms"
                     Orientation="Vertical"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Margin="10">
             <TextBlock Text="Using this app means you agree to" HorizontalAlignment="Center"/>
@@ -204,6 +192,27 @@
                       </Hyperlink>
             </TextBlock>
             <TextBlock Text="and that you are using this app at your own risk."/>
+        </StackPanel>
+        <StackPanel x:Name="SP_Developers" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30">
+            <TextBlock x:Name="AppByTextBlock"
+                       Text="Application by"
+                       FontFamily="Cascadia Code"
+                       FontSize="15"
+                       FontWeight="SemiBold"
+                       Margin="0,5,0,5"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Center">
+            </TextBlock>
+            <TextBlock x:Name="LogoTextBlock_MainDeveloper"
+                       Text="Luke Zhang"
+                       FontFamily="Cascadia Code"
+                       FontStyle="Italic"
+                       FontWeight="SemiBold"
+                       FontSize="17"
+                       Margin="0,5,0,5"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Center">
+            </TextBlock>
         </StackPanel>
     </Grid>
 </Window>

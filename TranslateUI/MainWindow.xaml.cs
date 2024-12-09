@@ -22,6 +22,11 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Windows.ApplicationModel.DataTransfer;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI;
+using Windows.ApplicationModel;
+using Windows.Storage;
+using System.IO;
+using Microsoft.UI.Windowing;
 
 namespace TranslateUI
 {
@@ -33,6 +38,17 @@ namespace TranslateUI
         {
             this.InitializeComponent();
             this.ExtendsContentIntoTitleBar = true;
+            this.SetWindowIcon("Assets/TranslateUI.ico");
+        }
+
+        private void SetWindowIcon(string iconPath)
+        {
+            var windowHandle = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            var windowId = Win32Interop.GetWindowIdFromWindow(windowHandle);
+            var appWindow = AppWindow.GetFromWindowId(windowId);
+
+            var iconFullPath = Path.Combine(Package.Current.InstalledLocation.Path, iconPath);
+            appWindow.SetIcon(iconFullPath);
         }
 
         private async void TranslateButton_Click(object sender, RoutedEventArgs e)
