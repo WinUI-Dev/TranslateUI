@@ -17,8 +17,8 @@ I already submitted this app to the Microsoft Store.
        `In Certification`
  - [ ] Publishing  
 
-You can't download it right now in the Store, but you can in Releases.
-> Waring  
+You can't download it righnt now in the Store, but you can in Releases.
+> 📌 **Warning**  
 > There's a know issue that the logo _**WILL NOT**_ be seen unless downloaded an installed from the Microsoft Store.
 ### Releases
 See [v1.1 in Releases page](https://github.com/zsr-lukezhang/TranslateUI/releases/tag/v1.1)  
