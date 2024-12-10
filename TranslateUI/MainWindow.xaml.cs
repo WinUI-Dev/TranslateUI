@@ -6,7 +6,7 @@
 //                                                 TranslateUI
 //                                      by Luke Zhang (GitHub@zsr-lukezhang)
 //                                   original idea by Lingbo (GitHub@lingbopro)
-//                                      Application Version: 1.1.1 ( Beta )
+//                                      Application Version: 1.1.3 ( Canary )
 //
 //
 //

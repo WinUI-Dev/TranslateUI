@@ -47,7 +47,8 @@
         <StackPanel x:Name="SP_PoweredBy"
                     Orientation="Vertical"
                     HorizontalAlignment="Right"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top"
+                    Visibility="Collapsed">
             <TextBlock x:Name="PoweredByTextBlock_TranslateProvider"
                        Text="Microsoft"
                        FontFamily="Cascadia Code"
@@ -173,6 +174,7 @@
                     Orientation="Vertical"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
+                    Visibility="Collapsed"
                     Margin="10">
             <TextBlock Text="Using this app means you agree to" HorizontalAlignment="Center"/>
             <TextBlock HorizontalAlignment="Center">
@@ -193,7 +195,7 @@
             </TextBlock>
             <TextBlock Text="and that you are using this app at your own risk."/>
         </StackPanel>
-        <StackPanel x:Name="SP_Developers" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30">
+        <StackPanel x:Name="SP_Developers" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30" Visibility="Collapsed">
             <TextBlock x:Name="AppByTextBlock"
                        Text="Application by"
                        FontFamily="Cascadia Code"
@@ -214,5 +216,8 @@
                        HorizontalAlignment="Center">
             </TextBlock>
         </StackPanel>
+        <Button x:Name="BT_About" HorizontalAlignment="Right" VerticalAlignment="Top" Width="50" Height="50" Margin="30">
+            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE946;"/>
+        </Button>
     </Grid>
 </Window>
