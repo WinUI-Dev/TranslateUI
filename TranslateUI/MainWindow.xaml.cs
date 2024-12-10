@@ -279,5 +279,10 @@ namespace TranslateUI
                 Debug.WriteLine("Error starting browser:" + ex.Message);
             }
         }
+
+        private void BT_About_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
