@@ -48,7 +48,7 @@
                        CharacterSpacing="70">
                 </TextBlock>
                 <TextBlock x:Name="LogoTextBlock_Version"
-                       Text="Canary Version 1.1.2"
+                       Text="Canary Version 1.1.3"
                        FontFamily="Cascadia Code"
                        FontStyle="Italic"
                        FontWeight="SemiBold"

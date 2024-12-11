@@ -282,7 +282,8 @@ namespace TranslateUI
 
         private void BT_About_Click(object sender, RoutedEventArgs e)
         {
-
+            var about_Window = new AboutWindow();
+            about_Window.Activate();
         }
     }
 }
