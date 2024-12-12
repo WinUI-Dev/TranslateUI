@@ -164,23 +164,25 @@
                     <SymbolIcon Symbol="Send"/>
                 </Button>
             </StackPanel>
-            <StackPanel Name="SP_OutputText"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Right"
-                        Orientation="Vertical"
-                        Margin="0">
-                <ComboBox x:Name="CB_OutputLang"
-                          SelectionChanged="CB_OutputLang_SelectionChanged"
-                          Header="Output Language"
-                          PlaceholderText="Pick a language"
-                          ToolTipService.ToolTip="Pick a language.&#x0A;Will add other languages later."
-                          Width="300"
-                          Margin="10"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center">
-                          <x:String>Chinese (Simplified)</x:String>
-                          <x:String>English</x:String>
-                          <!--Will add others using API from Microsoft Languages page in the future-->
+            <StackPanel
+                x:Name="SP_OutputText"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Orientation="Vertical"
+                Margin="0">
+                <ComboBox
+                    x:Name="CB_OutputLang"
+                    SelectionChanged="CB_OutputLang_SelectionChanged"
+                    Header="Output Language"
+                    PlaceholderText="Pick a language"
+                    ToolTipService.ToolTip="Pick a language.&#x0A;Will add other languages later."
+                    Width="300"
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <x:String>Chinese (Simplified)</x:String>
+                    <x:String>English</x:String>
+                    <!--Will add others using API from Microsoft Languages page in the future-->
                 </ComboBox>
                 <TextBox
                     x:Name="TB_Output"
