@@ -75,24 +75,26 @@
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Center">
             </TextBlock>
-            <TextBlock x:Name="PoweredByTextBlock_TranslateAPIProvider"
-                       Text="Edge Translate"
-                       FontFamily="Cascadia Code"
-                       FontSize="20"
-                       FontWeight="SemiBold"
-                       FontStyle="Italic"
-                       Margin="30,5,30,5"
-                       VerticalAlignment="Bottom"
-                       HorizontalAlignment="Center">
+            <TextBlock
+                x:Name="PoweredByTextBlock_TranslateAPIProvider"
+                Text="Edge Translate"
+                FontFamily="Cascadia Code"
+                FontSize="20"
+                FontWeight="SemiBold"
+                FontStyle="Italic"
+                Margin="30,5,30,5"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center">
             </TextBlock>
-            <TextBlock x:Name="PoweredByTextBlock"
-                       Text="API"
-                       FontFamily="Cascadia Code"
-                       FontSize="15"
-                       FontWeight="Bold"
-                       VerticalAlignment="Bottom"
-                       HorizontalAlignment="Center"
-                       Margin="30,5,30,5">
+            <TextBlock
+                x:Name="PoweredByTextBlock"
+                Text="API"
+                FontFamily="Cascadia Code"
+                FontSize="15"
+                FontWeight="Bold"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Margin="30,5,30,5">
             </TextBlock>
         </StackPanel>
         <StackPanel x:Name="SP_Main"
