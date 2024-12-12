@@ -13,26 +13,30 @@
     </Window.SystemBackdrop>
 
     <Grid>
-        <StackPanel x:Name="SP_ProgressBar"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Center">
-            <ProgressBar x:Name="PB_Wait"
-                         Width="1618"
-                         IsIndeterminate="True"
-                         ShowPaused="False"
-                         ShowError="False"
-                         Visibility="Collapsed" />
+        <StackPanel
+            x:Name="SP_ProgressBar"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center">
+            <ProgressBar
+                x:Name="PB_Wait"
+                Width="1618"
+                IsIndeterminate="True"
+                ShowPaused="False"
+                ShowError="False"
+                Visibility="Collapsed" />
         </StackPanel>
-        <StackPanel x:Name="SP_Logo"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top">
-            <Image Source="Assets/TranslateUI.png"
-                   Height="60"
-                   Width="60"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Margin="30,30,5,30">
+        <StackPanel
+            x:Name="SP_Logo"
+            Orientation="Horizontal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <Image
+                Source="Assets/TranslateUI.png"
+                Height="60"
+                Width="60"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="30,30,5,30">
             </Image>
             <StackPanel x:Name="SP_Logo_Text"
                         Orientation="Vertical"
@@ -125,17 +129,18 @@
                               But not this combobox :)
                           -->
                 </ComboBox>
-                <TextBox x:Name="TB_Input"
-                         PlaceholderText="Input text..."
-                         FontFamily="Cascadia Code"
-                         FontSize="15"
-                         Margin="10,0,10,10"
-                         VerticalAlignment="Center"
-                         HorizontalAlignment="Center"
-                         Width="300"
-                         Height="50"
-                         IsSpellCheckEnabled="False"
-                         AcceptsReturn="True">
+                <TextBox
+                    x:Name="TB_Input"
+                    PlaceholderText="Input text..."
+                    FontFamily="Cascadia Code"
+                    FontSize="15"
+                    Margin="10,0,10,10"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="300"
+                    Height="50"
+                    IsSpellCheckEnabled="False"
+                    AcceptsReturn="True">
                 </TextBox>
             </StackPanel>
             <StackPanel
