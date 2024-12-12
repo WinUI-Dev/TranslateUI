@@ -136,17 +136,19 @@
                          AcceptsReturn="True">
                 </TextBox>
             </StackPanel>
-            <StackPanel Name="SP_TranslateButton"
-                        VerticalAlignment="Bottom"
-                        HorizontalAlignment="Center"
-                        Orientation="Vertical"
-                        Margin="10">
-                <Button x:Name="TranslateButton"
-                        Click="TranslateButton_Click"
-                        Width="50" Height="50"
-                        VerticalAlignment="Bottom"
-                        HorizontalAlignment="Center"
-                        IsEnabled="False">
+            <StackPanel
+                x:Name="SP_TranslateButton"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Orientation="Vertical"
+                Margin="10">
+                <Button
+                    x:Name="TranslateButton"
+                    Click="TranslateButton_Click"
+                    Width="50" Height="50"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    IsEnabled="False">
                     <SymbolIcon Symbol="Send"/>
                 </Button>
             </StackPanel>
@@ -168,34 +170,34 @@
                           <x:String>English</x:String>
                           <!--Will add others using API from Microsoft Languages page in the future-->
                 </ComboBox>
-                <TextBox x:Name="TB_Output"
-                         IsReadOnly="True"
-                         PlaceholderText="Output text..."
-                         Text=""
-                         TextWrapping="Wrap"
-                         FontFamily="Cascadia Code"
-                         FontSize="15" Margin="0,0,0,10"
-                         VerticalAlignment="Center"
-                         HorizontalAlignment="Center"
-                         Width="300"
-                         Height="50"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                         AcceptsReturn="True">
+                <TextBox
+                    x:Name="TB_Output"
+                    IsReadOnly="True"
+                    PlaceholderText="Output text..."
+                    Text=""
+                    TextWrapping="Wrap"
+                    FontFamily="Cascadia Code"
+                    FontSize="15" Margin="0,0,0,10"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="300"
+                    Height="50"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    AcceptsReturn="True">
                 </TextBox>
             </StackPanel>
         </StackPanel>
-        <StackPanel x:Name="SP_UseTerms"
-                    Orientation="Vertical"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Visibility="Collapsed"
-                    Margin="10">
+        <StackPanel
+            x:Name="SP_UseTerms"
+            Orientation="Vertical"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Visibility="Collapsed"
+            Margin="10">
             <TextBlock Text="Using this app means you agree to" HorizontalAlignment="Center"/>
             <TextBlock HorizontalAlignment="Center">
-                <Hyperlink NavigateUri="https://aka.ms/useterms">
-                       Microsoft's Terms of Use
-                </Hyperlink>
+                <Hyperlink NavigateUri="https://aka.ms/useterms">Microsoft's Terms of Use</Hyperlink>
             </TextBlock>
             <TextBlock HorizontalAlignment="Center">
                 <Hyperlink NavigateUri="https://aka.ms/privacy">Microsoft's Privacy Statement</Hyperlink>
@@ -204,42 +206,43 @@
                 <Hyperlink NavigateUri="https://github.com/zsr-lukezhang/TranslateUI/blob/main/LICENSE">The open-source license for this app</Hyperlink>
             </TextBlock>
             <TextBlock HorizontalAlignment="Center">
-                      <Hyperlink NavigateUri="https://github.com/zsr-lukezhang/TranslateUI/blob/main/TermsAndPrivacy.md">
-                                 The use terms and privacy policy for this app
-                      </Hyperlink>
+                <Hyperlink NavigateUri="https://github.com/zsr-lukezhang/TranslateUI/blob/main/TermsAndPrivacy.md">The use terms and privacy policy for this app</Hyperlink>
             </TextBlock>
             <TextBlock Text="and that you are using this app at your own risk."/>
         </StackPanel>
         <StackPanel x:Name="SP_Developers" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30" Visibility="Collapsed">
-            <TextBlock x:Name="AppByTextBlock"
-                       Text="Application by"
-                       FontFamily="Cascadia Code"
-                       FontSize="15"
-                       FontWeight="SemiBold"
-                       Margin="0,5,0,5"
-                       VerticalAlignment="Bottom"
-                       HorizontalAlignment="Center">
+            <TextBlock
+                x:Name="AppByTextBlock"
+                Text="Application by"
+                FontFamily="Cascadia Code"
+                FontSize="15"
+                FontWeight="SemiBold"
+                Margin="0,5,0,5"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center">
             </TextBlock>
             <TextBlock x:Name="LogoTextBlock_MainDeveloper"
-                       Text="Luke Zhang"
-                       FontFamily="Cascadia Code"
-                       FontStyle="Italic"
-                       FontWeight="SemiBold"
-                       FontSize="17"
-                       Margin="0,5,0,5"
-                       VerticalAlignment="Bottom"
-                       HorizontalAlignment="Center">
+                Text="Luke Zhang"
+                FontFamily="Cascadia Code"
+                FontStyle="Italic"
+                FontWeight="SemiBold"
+                FontSize="17"
+                Margin="0,5,0,5"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center">
             </TextBlock>
         </StackPanel>
-        <Button x:Name="BT_About"
-                Click="BT_About_Click"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Width="50"
-                Height="50"
-                Margin="30">
-            <FontIcon FontFamily="Segoe Fluent Icons"
-                      Glyph="&#xE946;">
+        <Button 
+            x:Name="BT_About"
+            Click="BT_About_Click"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Width="50"
+            Height="50"
+            Margin="30">
+            <FontIcon
+                FontFamily="Segoe Fluent Icons"
+                Glyph="&#xE946;">
             </FontIcon>
         </Button>
     </Grid>

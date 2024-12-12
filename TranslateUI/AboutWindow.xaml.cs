@@ -39,6 +39,7 @@ namespace TranslateUI
             this.InitializeComponent();
             this.ExtendsContentIntoTitleBar = true;
             this.SetWindowIcon("Assets/TranslateUI.ico");
+            
         }
 
         private void SetWindowIcon(string iconPath)

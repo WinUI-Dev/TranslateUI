@@ -284,6 +284,7 @@ namespace TranslateUI
         {
             var about_Window = new AboutWindow();
             about_Window.Activate();
+            BT_About.IsEnabled = false;
         }
     }
 }
