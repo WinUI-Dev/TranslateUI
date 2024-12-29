@@ -14,7 +14,7 @@ I already submitted this app to the Microsoft Store.
  - [X] Submission
  - [X] Pre-processing
  - [ ] Certification  
-       `In Certification`
+       `STORE REJECTED`
  - [ ] Publishing  
 
 You can't download it righnt now in the Store, but you can in Releases.
