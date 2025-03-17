@@ -18,7 +18,7 @@ I already submitted this app to the Microsoft Store.
  - [ ] Publishing  
 
 You can't download it righnt now in the Store, but you can in Releases.
-> 📌 **Warning**  
+> [!WARNING]
 > There's a know issue that the logo _**WILL NOT**_ be seen on versions under `v1.1.2` unless downloaded and installed from the Microsoft Store.
 ### Releases
 See [v1.1.2 in Releases page](https://github.com/zsr-lukezhang/TranslateUI/releases/tag/v1.1.2)  
