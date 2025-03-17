@@ -5,11 +5,38 @@
 `Edge Translate API。`
 就是选中文本，点 `Translate to English` 后 Edge 调用的 API。
 # 请求
-## Header
+> [!NOTE]  
+> 这个 API 很宽松，似乎没有鉴权，Cookie 和请求头随便填写...大概吧
+
+## Request 精简版
+
+| METHOD      | URL                                                                  | CONTENT                   |
+| ----------- | -------------------------------------------------------------------- | --------------------------
+| POST        | `https://edge.microsoft.com/translate/translatetext?from=&to=en`     | `["你要翻译的"]`   |
+
+> [!TIP]
+> `to=en` 中的 en 换为你想要的值
+> 例如：`to=cn`
+
+### Request Body
+
+```
+[
+    " 你要翻译的"
+]
+```
+
+## Request Header
+
+<details>
+    <summary>
+        <h3>点我查看无关紧要的 Header...</h3>
+    </summary>
+
 ### 访问概述
 ```
 :method: POST
-:authority: edge.microsoft.com
+:authority: /translate/translatetext?from=&to=en
 :scheme: https
 :path: /translate/translatetext?from=&to=en
 ```
@@ -45,13 +72,13 @@ priority: u=1, i
 （`accept-language`没有验证，但我猜是这样）  
 其他的不要改  
 有的是自动生成的，也不要管，例如`content-length`  
-## Body
-```
-[
-    " 你要翻译的"
-]
-```
+</details>
+
 # 返回内容
+
+> [!IMPORTANT]
+> 此处不再省略。
+
 ## Header
 emm，Header似乎没有有价值的内容，但是也贴一下
 ```
