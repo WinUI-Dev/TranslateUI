@@ -124,9 +124,7 @@ date: Fri, 06 Dec 2024 02:30:22 GMT
 ]
 ```
 ### 解释
-emm，实际上有价值的只有 `translations` 中的 `text`，对吧？  
-`dectectedLanguage`... 这个不是我们发送过去的吗...  
-一会试试不发送那个，看看会发生什么...   
+emm，实际上有价值的只有 `translations` 中的 `text`  
 OK，就这样，我觉得解释的够清楚了。  
 
 # 作者与发现者
